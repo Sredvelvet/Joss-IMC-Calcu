@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 
+#Calcular el IMC con la formula
 def calcular_imc(peso, altura):
     return peso / (altura ** 2)
 
+#Dibujar el medidor indicandole el tamano y que sea un grafico polar
 def dibujar_medidor(imc):
     fig, ax = plt.subplots(figsize=(8, 6), subplot_kw={'polar': True})
 
@@ -39,7 +41,7 @@ def dibujar_medidor(imc):
     ax.set_xticklabels(['0', '5', '10', '15', '20', '25', '30', '35', '40'])
 
     return fig
-
+#Mostrar el medidor y controlar errores
 def mostrar_medidor():
     try:
         peso = float(entry_peso.get())
@@ -57,6 +59,7 @@ def mostrar_medidor():
     except ValueError as e:
         messagebox.showerror("Error", str(e))
 
+#Ventana emergente con recomendaciones
 def mostrar_recomendaciones():
     try:
         peso = float(entry_peso.get())
@@ -82,6 +85,7 @@ window = tk.Tk()
 window.title("Calculadora de IMC con Medidor")
 #Etiqueta
 
+#Etiqueta principal
 label = tk.Label(window,
                     text="Ingrese para calcular su IMC",
                     font=("Arial", 10, "bold"),
@@ -98,10 +102,12 @@ label.pack(pady=10)
 frame_entrada = tk.Frame(window)
 frame_entrada.pack(pady=20)
 
+#Entrada de peso
 tk.Label(frame_entrada, text="Peso (kg):").grid(row=0, column=0, padx=5)
 entry_peso = tk.Entry(frame_entrada)
 entry_peso.grid(row=0, column=1, padx=5)
 
+#Entrada de altura
 tk.Label(frame_entrada, text="Altura (m):").grid(row=1, column=0, padx=5)
 entry_altura = tk.Entry(frame_entrada)
 entry_altura.grid(row=1, column=1, padx=5)
